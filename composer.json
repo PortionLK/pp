@@ -1,0 +1,16 @@
+{
+    "name": "weblook/jframe",
+	"description": "PHP Framework by Weblook.",
+	"keywords": ["php framework", "jframe", "Weblook"],
+	"license": "MIT",
+	"type": "project",
+	"require": {
+        "illuminate/database": "*",
+		"phpmailer/phpmailer": "*"
+    },
+	"autoload": {
+		"classmap": [
+			"app/models"
+		]
+	}
+}

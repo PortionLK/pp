@@ -1,0 +1,122 @@
+@charset "utf-8";
+strong{
+	font-weight: 700;
+}
+.content-wrap{
+	width: 100%;
+}
+#accordion-inner .ui-accordion-header-active {
+	width: 100%;
+}
+#accordion-inner .ui-accordion-header {
+	width: 100%;
+	box-sizing: border-box;
+}
+.blue-set-width {
+width: 858px;
+}
+.sec-one {
+	width: 229px;
+	text-align: left;
+}
+.sec-one img{
+	width: 90px;
+}
+.set-min-height {
+	min-height: 65px;
+	padding-top: 39px;
+}
+.sec-six {
+	width: 100px;
+	border-right: 1px #96b2d9 solid;
+}
+.sec-two {
+	width: 120px;
+	border-right: 1px #96b2d9 solid;
+}
+.booking-form {
+	float: left;
+	width: 280px;
+	margin-top: 20px;
+	height: 376px;
+	padding: 15px 15px 15px 0;
+	box-sizing: border-box;
+	background: #EEEEEE;
+	margin-left: 20px;
+}
+.date-picker-box{
+	width: 589px;
+	float: left;
+}
+.input-button-box {
+	height: 100%;
+	padding-top: 10px;
+	border-top: none;
+	/*border-left: 1px #d6dbdf solid;*/
+	padding-left: 19px;
+}
+.one-half-form {
+	float: left;
+	padding-left: 0;
+	width: 100%;
+}
+.datepicker2{
+	width: 100% !important;
+}
+.one-half-form{
+	margin-bottom: 15px;
+}
+.one-half-form label{
+	color: #333;
+	margin-bottom: 5px;
+	font-size: 13px;
+	display: block;
+	font-weight: 700;
+}
+.bookbutton {
+	width: 100%;
+}
+.fancybox-effects-a{
+	width: 191px;
+	height: 123px;
+	display: block;
+	float: left;
+	position: relative;
+}
+.hotel-details-thumb img{
+	border:none;
+}
+.r-full-width{
+	width: 100%;
+}
+.tb-row {
+	clear: both;
+}
+.sec-four {
+	width: 170px;
+}
+.hotel-room-types-results-main-rows {
+	width: 858px;
+}
+.mid-width-r{
+	width: 889px;
+	margin: auto;
+	float: none;
+}
+.cf{
+	clear: both;
+	float: none;
+}
+.marg-top25{
+	margin-top: 25px;
+}
+.header-inner span {
+	color: #444;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 700;
+}
+.header-inner span strong {
+	color: #c7502c;
+	font-weight: 700;
+}

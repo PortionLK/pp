@@ -1,0 +1,25 @@
+$(window).scroll(function(){
+			posTop = $(window).scrollTop() - $('#eagerDetect').offset().top;
+			console.log(posTop);
+			if(posTop <= 0){
+				var loadMore = $.ajax({
+					url: "<?php echo HTTP; ?>handlers/eager_load.php",
+					data: {
+						type: "cat",
+						mCity: "<?php echo isset($_GET['mainCity']) ? $_GET['mainCity'] : ''; ?>",
+						sCity: "<?php echo isset($_GET['subCity']) ? $_GET['subCity'] : ''; ?>",
+						isMain: "<?php echo isset($_GET['isMain']) ? $_GET['isMain'] : ''; ?>",
+						eagerLoad: eagerLoad
+					},
+					method: "POST",
+					dataType: "html"
+				});
+				loadMore.done(function(response){
+					$('#eagerLoad').before(response);
+					eagerLoad += 10;
+				});
+				loadMore.fail(function(jqXHR, textStatus){
+					console.log('Failed getting more hotels');
+				});
+			}
+		}).trigger('scroll');

@@ -1,0 +1,1 @@
+[18-Nov-2014 07:13:46 America/New_York] PHP Fatal error:  Class 'MainCity' not found in /home/roomista/public_html/bookings/genpdf/invoices/res/voucher_template.php on line 8

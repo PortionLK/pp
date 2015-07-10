@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geolocation</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+    *{
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+    html, body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+    #map-canvas{
+        width: 50%;
+        height:100%;
+        float:left;
+    }
+    #outputDiv{
+        width: 50%;
+        height:100%;
+        float:left;
+        padding: 20px;
+    }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+
+<script>
+
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map;
+var geocoder;
+
+function initialize(endPosLat, endPosLng) {
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    var mapOptions = {
+        zoom: 16
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    directionsDisplay.setMap(map);
+    geocoder = new google.maps.Geocoder();
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var posLatLng = String(position.coords.latitude+', '+position.coords.longitude);
+            var endPos = String(endPosLat+', '+endPosLng);
+            calcRoute(posLatLng, endPos);
+
+            var origins = new google.maps.LatLng(position.coords.latitude,position.coords.longitude); 
+            var destinations = new google.maps.LatLng(endPosLat, endPosLng);
+
+            calculateDistances(origins, destinations);
+            map.setCenter(origins);
+
+        }, function() {
+            handleNoGeolocation(true);
+        });
+    } else {
+        handleNoGeolocation(false);
+    }
+}
+
+function handleNoGeolocation(errorFlag) {
+    if (errorFlag) {
+        var content = 'Error: The Geolocation service failed.';
+    } else {
+        var content = 'Error: Your browser doesn\'t support geolocation.';
+    }
+
+    var options = {
+        map: map,
+        position: new google.maps.LatLng(60, 105),
+        content: content
+    };
+
+    var infowindow = new google.maps.InfoWindow(options);
+    map.setCenter(options.position);
+}
+
+function calcRoute(posLatLng, endPos) {
+
+    var start = posLatLng;
+    var end = endPos;
+    var request = {
+        origin: start,
+        destination: end,
+        travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        }
+    });
+}
+
+function calculateDistances(origins, destinations) {
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix({
+        origins: [origins],
+        destinations: [destinations],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+    }, callback);
+}
+
+function callback(response, status) {
+    if (status != google.maps.DistanceMatrixStatus.OK) {
+        alert('Error was: ' + status);
+    } else {
+        var origins = response.originAddresses;
+        var destinations = response.destinationAddresses;
+        var outputDiv = document.getElementById('outputDiv');
+        outputDiv.innerHTML = '';
+        for (var i = 0; i < origins.length; i++) {
+            var results = response.rows[i].elements;
+            for (var j = 0; j < results.length; j++) {
+                outputDiv.innerHTML += 'You are ' + results[j].distance.text + ' km away from us. '+results[j].duration.text; // origins[i] + ' to ' + destinations[j] + ': ' +  + ' in ' + results[j].duration.text + '<br>';
+            }
+        }
+    }
+}
+
+</script>
+</head>
+<body onload="initialize(7.284393, 80.644572)">
+<div id="map-canvas"></div>
+<div id="outputDiv"></div>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+Options -Indexes +FollowSymLinks
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+ErrorDocument 403 /404
+ErrorDocument 404 /404
+ErrorDocument 500 /404
+
+RewriteRule ^404$					404.php [L]
+RewriteRule ^404/$					404.php [L]
+
+RewriteRule ^register$				app/auth/register.php [L]
+RewriteRule ^register/$				app/auth/register.php [L]
+RewriteRule ^register/step-01$		app/auth/regi_one.php [L]
+RewriteRule ^register/step-01/$		app/auth/regi_one.php [L]
+RewriteRule ^login$					app/auth/login.php [L]
+RewriteRule ^login/$				app/auth/login.php [L]
+RewriteRule ^login-attempt$			app/auth/login_attempt.php [L]
+RewriteRule ^login-attempt/$		app/auth/login_attempt.php [L]
+RewriteRule ^logout$				app/auth/logout.php [L]
+RewriteRule ^logout/$				app/auth/logout.php [L]
+RewriteRule ^recover$				app/auth/recover.php [L]
+RewriteRule ^recover/$				app/auth/recover.php [L]
+
+RewriteRule ^search$				app/http/handlers/search.php [L]
+RewriteRule ^search/$				app/http/handlers/search.php [L]
+RewriteRule ^events$				app/http/handlers/event_calendar.php [L]
+RewriteRule ^events/$				app/http/handlers/event_calendar.php [L]
+
+RewriteRule ^our-services$			app/http/static/services.php [L]
+RewriteRule ^our-services/$			app/http/static/services.php [L]
+RewriteRule ^about$					app/http/static/about.php [L]
+RewriteRule ^about/$				app/http/static/about.php [L]
+RewriteRule ^contact-us$			app/http/static/contact_us.php [L]
+RewriteRule ^contact-us/$			app/http/static/contact_us.php [L]
+
+RewriteRule ^special-offers$		app/http/dynamic/special_offers.php [L]
+RewriteRule ^special-offers/$		app/http/dynamic/special_offers.php [L]
+
+RewriteRule ^assets/subscribers$	app/http/assets/subscribers.php [L]
+RewriteRule ^assets/subscribers/$	app/http/assets/subscribers.php [L]
+
+RewriteRule ^dashboard$										app/http/dashboard/dashboard.php [L]
+RewriteRule ^dashboard/$									app/http/dashboard/dashboard.php [L]
+RewriteRule ^dashboard/add-hotel/step-([0-9]+)$				app/http/dashboard/add_hotels.php?stage=$1 [L]
+RewriteRule ^dashboard/add-hotel/step-([0-9]+)/$			app/http/dashboard/add_hotels.php?stage=$1 [L]
+RewriteRule ^dashboard/list-hotels$							app/http/dashboard/list_hotels.php [L]
+RewriteRule ^dashboard/list-hotels/$						app/http/dashboard/list_hotels.php [L]
+RewriteRule ^dashboard/list-hotels/edit$					app/http/dashboard/makeEditable.php [L]
+RewriteRule ^dashboard/list-hotels/edit/$					app/http/dashboard/makeEditable.php [L]
+RewriteRule ^dashboard/add-hotel/step-03/remove-room$		app/http/dashboard/removeRoom.php [L]
+RewriteRule ^dashboard/add-hotel/step-03/remove-room/$		app/http/dashboard/removeRoom.php [L]
+
+RewriteRule ^bookings/([a-zA-Z0-9_-]+)$						app/http/bookings/index.php?seo_url=$1&stage=01&page_url=bookings/$1 [L]
+RewriteRule ^bookings/([a-zA-Z0-9_-]+)/$					app/http/bookings/index.php?seo_url=$1&stage=01&page_url=bookings/$1 [L]
+RewriteRule ^bookings/([a-zA-Z0-9_-]+)/step-([0-9]+)$		app/http/bookings/steps.php?seo_url=$1&stage=$2&page_url=bookings/$1/step-$2 [L]
+RewriteRule ^bookings/([a-zA-Z0-9_-]+)/step-([0-9]+)/$		app/http/bookings/steps.php?seo_url=$1&stage=$2&page_url=bookings/$1/step-$2 [L]
+RewriteRule ^bookings/([a-zA-Z0-9_-]+)/special-offers$		app/http/bookings/special_offers.php?seo_url=$1&page_url=bookings/$1/special-offers [L]
+RewriteRule ^bookings/([a-zA-Z0-9_-]+)/special-offers/$		app/http/bookings/special_offers.php?seo_url=$1&page_url=bookings/$1/special-offers [L]
+RewriteRule ^bookings/([a-zA-Z0-9_-]+)/direction$		 	app/http/bookings/direction.php?seo_url=$1&page_url=bookings/$1/direction [L]
+RewriteRule ^bookings/([a-zA-Z0-9_-]+)/direction/$		    app/http/bookings/direction.php?seo_url=$1&page_url=bookings/$1/direction [L]
+
+RewriteRule ^sri-lanka/hotels-in-([a-z-]+)$										app/http/handlers/hotels_location.php?mainCity=$1&page_url=sri-lanka/hotels-$1 [L]
+RewriteRule ^sri-lanka/hotels-in-([a-z-]+)/$									app/http/handlers/hotels_location.php?mainCity=$1&page_url=sri-lanka/hotels-$1 [L]
+RewriteRule ^sri-lanka/hotels-in-([a-z-]+)/hotels-([a-z-]+)$					app/http/handlers/hotels_location.php?mainCity=$1&subCity=$2&page_url=sri-lanka/hotels-$1/hotels-$2 [L]
+RewriteRule ^sri-lanka/hotels-in-([a-z-]+)/hotels-([a-z-]+)/$					app/http/handlers/hotels_location.php?mainCity=$1&subCity=$2&page_url=sri-lanka/hotels-$1/hotels-$2 [L]
+RewriteRule ^sri-lanka/([a-z-]+)-hotels$										app/http/handlers/hotels_category.php?type=$1&page_url=sri-lanka/$1-hotels [L]
+RewriteRule ^sri-lanka/([a-z-]+)-hotels/$										app/http/handlers/hotels_category.php?type=$1&page_url=sri-lanka/$1-hotels [L]
+RewriteRule ^sri-lanka/([a-z-]+)-hotels/hotels-in-([a-z-]+)$					app/http/handlers/hotels_category.php?type=$1&mainCity=$2&page_url=sri-lanka/$1-hotels/hotels-$2 [L]
+RewriteRule ^sri-lanka/([a-z-]+)-hotels/hotels-in-([a-z-]+)/$					app/http/handlers/hotels_category.php?type=$1&mainCity=$2&page_url=sri-lanka/$1-hotels/hotels-$2 [L]
+RewriteRule ^sri-lanka/([a-z-]+)-hotels/0/hotels-([a-z-]+)$						app/http/handlers/hotels_category.php?type=$1&subCity=$2&isMain=noMain&page_url=sri-lanka/$1-hotels/0/hotels-$2 [L]
+RewriteRule ^sri-lanka/([a-z-]+)-hotels/0/hotels-([a-z-]+)/$					app/http/handlers/hotels_category.php?type=$1&subCity=$2&isMain=noMain&page_url=sri-lanka/$1-hotels/0/hotels-$2 [L]
+RewriteRule ^sri-lanka/([a-z-]+)-hotels/hotels-in-([a-z-]+)/hotels-([a-z-]+)$	app/http/handlers/hotels_category.php?type=$1&mainCity=$2&subCity=$3&page_url=sri-lanka/$1-hotels/hotels-$2/hotels-$3 [L]
+RewriteRule ^sri-lanka/([a-z-]+)-hotels/hotels-in-([a-z-]+)/hotels-([a-z-]+)/$	app/http/handlers/hotels_category.php?type=$1&mainCity=$2&subCity=$3&page_url=sri-lanka/$1-hotels/hotels-$2/hotels-$3 [L]
+
+RewriteRule ^([a-zA-Z0-9_-]+)$				app/http/handlers/unique_hotel.php?seo_url=$1&page_url=$1 [L]
+RewriteRule ^([a-zA-Z0-9_-]+)/$				app/http/handlers/unique_hotel.php?seo_url=$1&page_url=$1 [L]
+
+RewriteCond %{HTTP_HOST}					^roomista\.com$ [OR]
+RewriteCond %{HTTP_HOST}					^www\.roomista\.com$
