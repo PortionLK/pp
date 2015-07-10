@@ -1,13 +1,13 @@
 {
-    "name": "weblook/jframe",
-	"description": "PHP Framework by Weblook.",
-	"keywords": ["php framework", "jframe", "Weblook"],
+	"name": "jcodesdotme/pp",
+	"description": "A hotel directory system that can use to book by travelers",
+	"keywords": ["jcodesdotme"],
 	"license": "MIT",
 	"type": "project",
 	"require": {
-        "illuminate/database": "*",
+        	"illuminate/database": "*",
 		"phpmailer/phpmailer": "*"
-    },
+    	},
 	"autoload": {
 		"classmap": [
 			"app/models"
